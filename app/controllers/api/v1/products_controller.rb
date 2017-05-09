@@ -3,9 +3,9 @@ class Api::V1::ProductsController < ApiController
   def index
     @products = Product.all
 
-    request.format = :json
+
     respond_to do |format|
-      format.json { render :index }
+      format.any { render :partial => 'api/v1/products/index.json.jbuilder'}
     end
   end
 
