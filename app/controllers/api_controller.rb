@@ -1,11 +1,13 @@
 class ApiController < ApplicationController
 include Response
-# before_action :set_default_format
+
+before_action :set_default_format
 
 private
 
-# def set_default_format
-#   request.format = :json
-# end
+def set_default_format
+  request.format = :json
+end
+
 
 end
