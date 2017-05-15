@@ -8,6 +8,7 @@ skip_before_action :verify_authenticity_token, if: :json_request?
 
   def create
     @product = Product.new(products_params)
+
     if @product.save
       json_response(@product, :created)
     else
@@ -15,6 +16,18 @@ skip_before_action :verify_authenticity_token, if: :json_request?
       json_response(@error, 422)
     end
   end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.update(products_params)
+    if @product.valid?
+      json_response(@product)
+    else
+      @error = {error: @product.errors.full_messages}
+      json_response(@error, 422)
+    end
+  end
+
 
   private
   
