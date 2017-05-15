@@ -11,7 +11,8 @@ skip_before_action :verify_authenticity_token, if: :json_request?
     if @product.save
       json_response(@product, :created)
     else
-
+      @error = {error: @product.errors.full_messages}
+      json_response(@error, 422)
     end
   end
 
