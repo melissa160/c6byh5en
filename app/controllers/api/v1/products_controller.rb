@@ -28,6 +28,11 @@ skip_before_action :verify_authenticity_token, if: :json_request?
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    json_response({}, 204)
+  end
 
   private
   
